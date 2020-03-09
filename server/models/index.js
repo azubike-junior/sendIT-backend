@@ -8,10 +8,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const env = 'production' || 'development'
+const env = process.env.NODE_ENV || 'development'
 const config = dbConfig[env];
 
-const configPath = env === 'development' ? config.url : config.url
+const configPath = env === 'test' ? config : config.url
 console.log('config:', configPath)
 
 // const prod_config = dbConfig.production.connectionString

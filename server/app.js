@@ -20,7 +20,9 @@ passportfacebookConfiguration(passport)
 
 app.use('/api/v1/', routes);
 
-
+app.get('/', (req, res) => {
+	res.json('app is working')
+})
 
 app.listen(PORT, () => {
 	console.log(`server running on port ${PORT}`);
