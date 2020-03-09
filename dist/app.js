@@ -14,7 +14,7 @@ var _passportAuth = require("./middlewares/passportAuth");
 
 _dotenv.default.config();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3040;
 const app = (0, _express.default)();
 app.use(_express.default.json());
 app.use(_passport.default.initialize());

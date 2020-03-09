@@ -19,14 +19,18 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 
 _dotenv.default.config();
 
-const env = process.env.NODE_ENV || 'development';
-console.log(config);
-const configPath = env === 'production' ? _config.dbConfig.production : _config.dbConfig.development;
+const prod_config = _config.dbConfig.production.connectionString;
+const dev_config = _config.dbConfig.development.connectionString;
+const env = 'development' || 'production';
+const configPath = env === 'production' ? prod_config : dev_config;
 let sequelize;
 sequelize = env === 'development' ? new _sequelize.default(configPath, {
+  dialect: 'postgres',
   host: 'localhost',
   logging: false
-}) : new _sequelize.default(configPath);
+}) : new _sequelize.default(configPath, {
+  dialect: 'postgres'
+});
 const db = {};
 
 _fs.default.readdirSync(__dirname).filter(file => {

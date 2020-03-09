@@ -4,9 +4,9 @@ dotenv.config()
 const {
     DEV_DATABASE_URL,
     DEV_DATABASE_DIALECT,
-    PROD_DATABASE_URL,
+    DATABASE_URL,
     PROD_DATABASE_DIALECT,
-    DEV_DATABASE_SECRET
+    DEV_DATABASE_SECRET,
 } = process.env
 
 export const dbConfig = {
@@ -15,7 +15,7 @@ export const dbConfig = {
         dialect: DEV_DATABASE_DIALECT
     },
     production: {
-        connectionString: PROD_DATABASE_URL,
+        connectionString: DATABASE_URL,
         dialect: PROD_DATABASE_DIALECT
     }
 }
