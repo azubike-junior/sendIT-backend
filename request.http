@@ -1,0 +1,15 @@
+GET https://localhost:3000/api/v1/user/signup
+Content-Type: application/json
+
+{
+    "firstName": "sean",
+    "lastName": "orji",
+    "email": "sean@gmail.com",
+    "password": "ggguuu",
+    "isAdmin": true
+}
+
+####
+
+POST https://localhost:3000/api/v1/user/signup
+Content-Type: application/json
