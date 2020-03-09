@@ -8,17 +8,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV || 'production'
 const config = dbConfig[env];
 
-const configPath = env === 'test' ? config : config.url
+const configPath = env === 'development' ? config.url : config.url
 console.log('config:', configPath)
-
-// const prod_config = dbConfig.production.connectionString
-// const dev_config = dbConfig.development.connectionString
-// const env = 'development' || 'production'
-
-// const configPath = env === 'production' ? prod_config : dev_config
 
 let sequelize;
 sequelize = env === 'development' ? new Sequelize(configPath, {
