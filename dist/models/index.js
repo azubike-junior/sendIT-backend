@@ -19,9 +19,9 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 
 _dotenv.default.config();
 
-const env = 'production' || 'development';
+const env = process.env.NODE_ENV || 'development';
 const config = _config.dbConfig[env];
-const configPath = env === 'development' ? config.url : config.url;
+const configPath = env === 'test' ? config : config.url;
 console.log('config:', configPath); // const prod_config = dbConfig.production.connectionString
 // const dev_config = dbConfig.development.connectionString
 // const env = 'development' || 'production'

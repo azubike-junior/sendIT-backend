@@ -22,6 +22,9 @@ app.use(_passport.default.session());
 (0, _passportAuth.passportGoogleConfiguration)(_passport.default);
 (0, _passportAuth.passportfacebookConfiguration)(_passport.default);
 app.use('/api/v1/', _index.default);
+app.get('/', (req, res) => {
+  res.json('app is working');
+});
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
