@@ -19,10 +19,14 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 
 _dotenv.default.config();
 
-const prod_config = _config.dbConfig.production.connectionString;
-const dev_config = _config.dbConfig.development.connectionString;
-const env = 'development' || 'production';
-const configPath = env === 'production' ? prod_config : dev_config;
+const env = 'production' || 'development';
+const config = _config.dbConfig[env];
+const configPath = env === 'development' ? config.url : config.url;
+console.log('config:', configPath); // const prod_config = dbConfig.production.connectionString
+// const dev_config = dbConfig.development.connectionString
+// const env = 'development' || 'production'
+// const configPath = env === 'production' ? prod_config : dev_config
+
 let sequelize;
 sequelize = env === 'development' ? new _sequelize.default(configPath, {
   dialect: 'postgres',

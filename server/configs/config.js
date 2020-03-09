@@ -11,11 +11,11 @@ const {
 
 export const dbConfig = {
     development: {
-        connectionString: DEV_DATABASE_URL,
+        url: DEV_DATABASE_URL,
         dialect: DEV_DATABASE_DIALECT
     },
     production: {
-        connectionString: DATABASE_URL,
+        url: DATABASE_URL,
         dialect: PROD_DATABASE_DIALECT
     }
 }
