@@ -21,12 +21,8 @@ _dotenv.default.config();
 
 const env = process.env.NODE_ENV || 'development';
 const config = _config.dbConfig[env];
-const configPath = env === 'test' ? config : config.url;
-console.log('config:', configPath); // const prod_config = dbConfig.production.connectionString
-// const dev_config = dbConfig.development.connectionString
-// const env = 'development' || 'production'
-// const configPath = env === 'production' ? prod_config : dev_config
-
+const configPath = env === 'production' ? config.url : config.url;
+console.log('config:', configPath);
 let sequelize;
 sequelize = env === 'development' ? new _sequelize.default(configPath, {
   dialect: 'postgres',
