@@ -1,50 +1,20 @@
-export default (sequelize, Sequelize) => {
-    const parcelSchema = {
-        parcelId: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-        parcelName: {
-            type: Sequelize.TEXT,
-            allowNull: false,
-        },
-        destination: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        pickupLocation: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        deliveredOn: {
-            type: Sequelize.DATE
-        },
-        parcelStatus: {
-            type: Sequelize.STRING
-        },
-        presentLocation: {
-            type: Sequelize.TEXT
-        },
-        parcelWeight: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        placedBy: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        sentOn: {
-            type: Sequelize.DATE
-        },
-        parcelWeightScale: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        }
-    }
-
-    const Parcel = sequelize.define('parcels', parcelSchema, {
-        timestamps: false
-    })
-    return Parcel
-}
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const parcel = sequelize.define('parcel', {
+    parcelId: DataTypes.INTEGER,
+    parcelName: DataTypes.TEXT,
+    destination: DataTypes.TEXT,
+    pickupLocation: DataTypes.TEXT,
+    deliveredOn: DataTypes.DATE,
+    parcelStatus: DataTypes.TEXT,
+    presentLocation: DataTypes.TEXT,
+    parcelWeight: DataTypes.INTEGER,
+    placedBy: DataTypes.TEXT,
+    sentOn: DataTypes.DATE,
+    parcelWeightScale: DataTypes.INTEGER
+  }, {});
+  parcel.associate = function(models) {
+    // associations can be defined here
+  };
+  return parcel;
+};
