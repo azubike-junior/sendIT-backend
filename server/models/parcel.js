@@ -46,6 +46,5 @@ export default (sequelize, Sequelize) => {
     const Parcel = sequelize.define('parcels', parcelSchema, {
         timestamps: false
     })
-
     return Parcel
 }

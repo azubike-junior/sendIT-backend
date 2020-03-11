@@ -12,7 +12,6 @@ const env = process.env.NODE_ENV || 'development'
 const config = dbConfig[env];
 
 const configPath = env === 'production' ? config.url : config.url
-console.log('config:', configPath)
 
 let sequelize;
 sequelize = env === 'development' ? new Sequelize(configPath, {
