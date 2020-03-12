@@ -7,8 +7,13 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.TEXT,
     isAdmin: DataTypes.BOOLEAN
   }, {});
-  user.associate = function(models) {
+  user.associate = function (models) {
     // associations can be defined here
+    user.hasMany(models.parcel, {
+      foreignKey: 'parcelId',
+      target: 'parcelId',
+      onDelete: "CASCADE"
+    })
   };
   return user;
 };

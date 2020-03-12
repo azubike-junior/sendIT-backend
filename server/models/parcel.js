@@ -13,8 +13,13 @@ module.exports = (sequelize, DataTypes) => {
     sentOn: DataTypes.DATE,
     parcelWeightScale: DataTypes.INTEGER
   }, {});
-  parcel.associate = function(models) {
+  parcel.associate = function (models) {
     // associations can be defined here
+    parcel.belongsTo(models.user, {
+      foreignKey: 'userId',
+      target: 'id',
+      onDelete: "CASCADE"
+    })
   };
   return parcel;
 };
