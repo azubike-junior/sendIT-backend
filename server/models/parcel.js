@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   parcel.associate = function (models) {
     // associations can be defined here
     parcel.belongsTo(models.user, {
-      foreignKey: 'userId',
+      foreignKey: 'id',
       target: 'id',
       onDelete: "CASCADE"
     })
