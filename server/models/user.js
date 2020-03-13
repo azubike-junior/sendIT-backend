@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     user.hasMany(models.parcel, {
       foreignKey: 'parcelId',
-      target: 'parcelId',
+      target: 'id',
       onDelete: "CASCADE"
     })
   };

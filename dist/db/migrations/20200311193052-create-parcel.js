@@ -50,6 +50,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('parcels');
+    return Promise.all([queryInterface.dropTable('parcels'), queryInterface.removeColumn('parcels', 'parcelId')]);
   }
 };
