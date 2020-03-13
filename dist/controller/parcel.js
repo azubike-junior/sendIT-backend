@@ -12,13 +12,13 @@ var _models = _interopRequireDefault(require("../models"));
 var _response = require("../helpers/response");
 
 const {
-  parcels
+  parcel
 } = _models.default;
 
 class ParcelController {
   static async getParcels(req, res, next) {
     try {
-      const foundParcels = await parcels.findAll();
+      const foundParcels = await parcel.findAll();
 
       if (!foundParcels) {
         return (0, _response.sendResponse)(res, {
@@ -52,7 +52,7 @@ class ParcelController {
     } = req.body;
 
     try {
-      let createdParcel = await parcels.create({
+      let createdParcel = await parcel.create({
         parcelName,
         destination,
         pickupLocation,

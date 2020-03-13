@@ -1,35 +1,17 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+const dotenv = require('dotenv').config();
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.jwtConfig = exports.dbConfig = void 0;
-
-var _dotenv = _interopRequireDefault(require("dotenv"));
-
-_dotenv.default.config();
-
-const {
-  DEV_DATABASE_URL,
-  DEV_DATABASE_DIALECT,
-  DATABASE_URL,
-  PROD_DATABASE_DIALECT,
-  DEV_DATABASE_SECRET
-} = process.env;
-const dbConfig = {
+module.exports = {
   development: {
-    url: DEV_DATABASE_URL,
-    dialect: DEV_DATABASE_DIALECT
+    url: process.env.DEV_DATABASE_URL
   },
   production: {
-    url: DATABASE_URL,
-    dialect: PROD_DATABASE_DIALECT
+    url: process.env.DATABASE_URL,
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: true,
+      connectTimeout: 60000
+    }
   }
 };
-exports.dbConfig = dbConfig;
-const jwtConfig = {
-  secret: DEV_DATABASE_SECRET
-};
-exports.jwtConfig = jwtConfig;

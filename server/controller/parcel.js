@@ -4,13 +4,13 @@ import {
 } from '../helpers/response';
 
 const {
-    parcels
+    parcel
 } = models;
 
 export default class ParcelController {
     static async getParcels(req, res, next) {
         try {
-            const foundParcels = await parcels.findAll();
+            const foundParcels = await parcel.findAll();
             if (!foundParcels) {
                 return sendResponse(res, {
                     statusCode: 404,
@@ -42,7 +42,7 @@ export default class ParcelController {
         } = req.body
 
         try {
-            let createdParcel = await parcels.create({
+            let createdParcel = await parcel.create({
                 parcelName,
                 destination,
                 pickupLocation,

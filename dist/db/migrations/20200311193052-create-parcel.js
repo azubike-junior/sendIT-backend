@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('parcels', {
@@ -49,10 +50,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return Promise.all([
-      queryInterface.dropTable('parcels'),
-      queryInterface.removeColumn('parcels', 'parcelId')
-    ]);
-
+    return queryInterface.dropTable('parcels');
   }
 };
