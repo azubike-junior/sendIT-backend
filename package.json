@@ -7,7 +7,8 @@
     "start-dev": "nodemon ./server/app.js --exec babel-node",
     "build": "rm -rf dist && babel ./server -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "./node_modules/.bin/sequelize db:migrate"
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "seed": "./node_modules/.bin/sequelize db:seed"
   },
   "author": "sean orj",
   "license": "MIT",
