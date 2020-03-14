@@ -69,15 +69,14 @@ export default class ParcelController {
 
     static async getParcel(req, res, next) {
         const {
-            id
+            parcelId
         } = req.params
         try {
-            const foundParcel = await parcel.findAll({
+            const foundParcel = await parcel.findOne({
                 where: {
-                    id
+                    parcelId
                 }
             })
-            console.log(foundParcel)
             if (foundParcel) {
                 return sendResponse(res, {
                     statusCode: 200,

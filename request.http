@@ -1,4 +1,4 @@
-GET https:localhost:3000/api/v1/parcel/parcels
+GET https:/api/v1/parcel/parcels
 Content-Type: application/json
 
 {
