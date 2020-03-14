@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const parcel = sequelize.define('parcel', {
-    parcelId: DataTypes.INTEGER,
     parcelName: DataTypes.TEXT,
     destination: DataTypes.TEXT,
     pickupLocation: DataTypes.TEXT,

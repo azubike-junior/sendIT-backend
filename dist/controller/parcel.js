@@ -78,13 +78,13 @@ class ParcelController {
 
   static async getParcel(req, res, next) {
     const {
-      parcelId
+      id
     } = req.params;
 
     try {
-      const foundParcel = await parcels.findOne({
+      const foundParcel = await parcel.findOne({
         where: {
-          parcelId
+          id
         }
       });
 
@@ -117,7 +117,7 @@ class ParcelController {
     } = req.body;
 
     try {
-      const foundParcel = await parcels.findAll({
+      const foundParcel = await parcel.findAll({
         where: {
           parcelId
         }
@@ -157,7 +157,7 @@ class ParcelController {
     } = req.body;
 
     try {
-      const foundParcel = await parcels.findAll({
+      const foundParcel = await parcel.findAll({
         where: {
           parcelId
         }
@@ -197,7 +197,7 @@ class ParcelController {
     } = req.body;
 
     try {
-      const foundParcel = await parcels.findAll({
+      const foundParcel = await parcel.findAll({
         where: {
           parcelId
         }
@@ -238,7 +238,7 @@ class ParcelController {
     } = req.body;
 
     try {
-      const foundParcel = await parcels.findAll({
+      const foundParcel = await parcel.findAll({
         where: {
           parcelId
         }
