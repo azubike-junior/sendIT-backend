@@ -1,4 +1,4 @@
-POST https://sendit11.herokuapp.com/api/v1/parcel/parcels
+GET https:localhost:3000/api/v1/parcel/parcels
 Content-Type: application/json
 
 {
@@ -14,7 +14,3 @@ Content-Type: application/json
         "presentLocation": "isale oja, mowe, ajegunle"
 }
 
-####
-
-POST https://localhost:3000/api/v1/user/signup
-Content-Type: application/json

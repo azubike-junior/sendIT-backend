@@ -26,7 +26,7 @@ export default class ParcelController {
                 data: foundParcels
             });
         } catch (e) {
-            throw e;
+            throw e
         }
     }
 
@@ -39,7 +39,7 @@ export default class ParcelController {
             parcelWeight,
             placedBy,
             parcelWeightScale
-        } = req.body;
+        } = req.body
 
         try {
             let createdParcel = await parcel.create({
@@ -51,7 +51,7 @@ export default class ParcelController {
                 placedBy,
                 sentOn: new Date(),
                 parcelWeightScale
-            });
+            })
 
             if (createdParcel) {
                 return sendResponse(res, {
@@ -62,20 +62,22 @@ export default class ParcelController {
                 });
             }
         } catch (e) {
-            throw e;
+            throw e
         }
     }
+
 
     static async getParcel(req, res, next) {
         const {
             id
-        } = req.params;
+        } = req.params
         try {
-            const foundParcel = await parcel.findOne({
+            const foundParcel = await parcel.findAll({
                 where: {
                     id
                 }
-            });
+            })
+            console.log(foundParcel)
             if (foundParcel) {
                 return sendResponse(res, {
                     statusCode: 200,
@@ -91,29 +93,29 @@ export default class ParcelController {
                 data: null
             });
         } catch (e) {
-            throw e;
+            throw e
         }
     }
 
     static async cancelParcel(req, res, next) {
         const {
-            id
-        } = req.params;
+            parcelId
+        } = req.params
         const {
             parcelStatus
-        } = req.body;
+        } = req.body
         try {
             const foundParcel = await parcel.findAll({
                 where: {
-                    id
+                    parcelId
                 }
-            });
+            })
             if (foundParcel.length > 0) {
-                foundParcel.forEach(async (parcel) => {
+                foundParcel.forEach(async parcel => {
                     await parcel.update({
                         parcelStatus
-                    });
-                });
+                    })
+                })
                 return sendResponse(res, {
                     statusCode: 200,
                     success: true,
@@ -127,106 +129,108 @@ export default class ParcelController {
                 message: 'specific parcel does not exist',
                 data: null
             });
+
         } catch (e) {
-            throw e;
+            throw e
         }
+
     }
 
     static async changeParcelStatus(req, res, next) {
         const {
-            id
-        } = req.params;
+            parcelId
+        } = req.params
         const {
             parcelStatus
-        } = req.body;
+        } = req.body
         try {
             const foundParcel = await parcel.findAll({
                 where: {
-                    id
+                    parcelId
                 }
-            });
+            })
             if (foundParcel.length > 0) {
-                foundParcel.forEach(async (parcel) => {
+                foundParcel.forEach(async parcel => {
                     if (parcel.dataValues.parcelStatus === 'CANCELLED') {
                         return sendResponse(res, {
                             statusCode: 404,
                             success: false,
-                            message: 'parcel has already been canceled'
+                            message: 'parcel has already been canceled',
                         });
                     }
                     await parcel.update({
                         parcelStatus
-                    });
+                    })
 
                     return sendResponse(res, {
                         statusCode: 200,
                         success: true,
-                        message: 'parcel status has been updated'
+                        message: 'parcel status has been updated',
                     });
-                });
+                })
             }
         } catch (e) {
-            throw e;
+            throw e
         }
     }
 
     static async changeDestination(req, res, next) {
         const {
-            id
-        } = req.params;
+            parcelId
+        } = req.params
         const {
             destination
-        } = req.body;
+        } = req.body
         try {
             const foundParcel = await parcel.findAll({
                 where: {
-                    id
+                    parcelId
                 }
-            });
+            })
             if (foundParcel.length > 0) {
-                foundParcel.forEach(async (parcel) => {
+                foundParcel.forEach(async parcel => {
                     if (parcel.dataValues.parcelStatus === 'DELIVERED') {
                         return sendResponse(res, {
                             statusCode: 404,
                             success: false,
-                            message: 'parcel has already been DELIVERED, so destination cant be changed'
+                            message: 'parcel has already been DELIVERED, so destination cant be changed',
                         });
                     }
                     await parcel.update({
                         destination
-                    });
+                    })
                     return sendResponse(res, {
                         statusCode: 200,
                         success: true,
                         message: 'parcel destination has been updated',
                         data: foundParcel
                     });
-                });
+                })
             }
         } catch (e) {
-            throw e;
+            throw e
         }
     }
 
     static async changePresentLocation(req, res, next) {
         const {
-            id
-        } = req.params;
+            parcelId
+        } = req.params
         const {
             presentLocation
-        } = req.body;
+        } = req.body
         try {
             const foundParcel = await parcel.findAll({
                 where: {
-                    id
+                    parcelId
                 }
-            });
+            })
             if (foundParcel.length > 0) {
-                foundParcel.forEach(async (parcel) => {
+                foundParcel.forEach(async parcel => {
                     await parcel.update({
                         presentLocation
-                    });
-                });
+                    })
+                })
                 return sendResponse(res, {
                     statusCode: 200,
                     success: true,
@@ -241,7 +245,7 @@ export default class ParcelController {
                 data: null
             });
         } catch (e) {
-            throw err;
+            throw err
         }
     }
 }
