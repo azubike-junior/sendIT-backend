@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     placedBy: DataTypes.TEXT,
     sentOn: DataTypes.DATE,
     parcelWeightScale: DataTypes.TEXT,
-    timestamps: false,
   }, {});
   parcel.associate = function (models) {
     // associations can be defined here

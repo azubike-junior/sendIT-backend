@@ -37,8 +37,7 @@ module.exports = {
       },
       parcelWeightScale: {
         type: Sequelize.TEXT
-      },
-      timestamps: false
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

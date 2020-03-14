@@ -1,8 +1,8 @@
-GET https:/api/v1/parcel/parcels
+GET http://sendit11.herokuapp.com/api/v1/parcel/parcels/1
 Content-Type: application/json
 
 {
-        "parcelName": "bed",
+        "parcelName": "chickens",
         "destination": "lagos state, ikorodu, no 5 loau street",
         "pickupLocation": "ikorodu turning",
         "deliveredOn": "2018-11-18",
