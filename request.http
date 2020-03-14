@@ -1,12 +1,17 @@
-GET https://localhost:3000/api/v1/user/signup
+POST https://sendit11.herokuapp.com/api/v1/parcel/parcels
 Content-Type: application/json
 
 {
-    "firstName": "sean",
-    "lastName": "orji",
-    "email": "sean@gmail.com",
-    "password": "ggguuu",
-    "isAdmin": true
+        "parcelName": "bed",
+        "destination": "lagos state, ikorodu, no 5 loau street",
+        "pickupLocation": "ikorodu turning",
+        "deliveredOn": "2018-11-18",
+        "parcelStatus": "TRANSMITTING",
+        "parcelWeight": "333",
+        "placedBy": "20",
+        "parcelWeightScale": "kg",
+        "sentOn": "2018-11-18",
+        "presentLocation": "isale oja, mowe, ajegunle"
 }
 
 ####

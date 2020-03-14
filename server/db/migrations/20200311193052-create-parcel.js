@@ -36,16 +36,9 @@ module.exports = {
         type: Sequelize.DATE
       },
       parcelWeightScale: {
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      timestamps: false
     });
   },
   down: (queryInterface, Sequelize) => {
