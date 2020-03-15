@@ -80,13 +80,15 @@ class ParcelController {
     const {
       id
     } = req.params;
+    console.log(id);
 
     try {
-      const foundParcel = await parcel.findByPk({
+      const foundParcel = await parcel.findOne({
         where: {
           id
         }
       });
+      console.log(foundParcel);
 
       if (foundParcel) {
         return (0, _response.sendResponse)(res, {

@@ -1,6 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const parcel = sequelize.define('parcel', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    },
     parcelName: DataTypes.TEXT,
     destination: DataTypes.TEXT,
     pickupLocation: DataTypes.TEXT,
@@ -10,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     parcelWeight: DataTypes.INTEGER,
     placedBy: DataTypes.TEXT,
     sentOn: DataTypes.DATE,
-    parcelWeightScale: DataTypes.TEXT,
+    parcelWeightScale: DataTypes.TEXT
   }, {});
   parcel.associate = function (models) {
     // associations can be defined here

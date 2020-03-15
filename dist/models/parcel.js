@@ -2,6 +2,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const parcel = sequelize.define('parcel', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    },
     parcelName: DataTypes.TEXT,
     destination: DataTypes.TEXT,
     pickupLocation: DataTypes.TEXT,

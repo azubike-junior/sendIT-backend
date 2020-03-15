@@ -37,13 +37,18 @@ module.exports = {
       },
       parcelWeightScale: {
         type: Sequelize.TEXT
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.dropTable('parcels'),
-      queryInterface.removeColumn('parcels', 'parcelId')
+      queryInterface.dropTable('parcels')
     ]);
 
   }

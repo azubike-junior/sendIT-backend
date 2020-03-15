@@ -11,10 +11,12 @@ module.exports = {
         deliveredOn: "2018-11-18",
         parcelStatus: "TRANSMITTING",
         parcelWeight: "333",
-        placedBy: "20",
+        placedBy: "1",
         parcelWeightScale: "kg",
         sentOn: "2018-11-18",
-        presentLocation: "isale oja, mowe, ajegunle"
+        presentLocation: "isale oja, mowe, ajegunle",
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         parcelName: "car",
@@ -23,10 +25,12 @@ module.exports = {
         deliveredOn: "2018-11-18",
         parcelStatus: "TRANSMITTING",
         parcelWeight: "1000",
-        placedBy: "20",
+        placedBy: "1",
         parcelWeightScale: "kg",
         sentOn: "2018-11-18",
-        presentLocation: "ananaje lawal ondo state"
+        presentLocation: "ananaje lawal ondo state",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }, {
         parcelName: "laptop",
         destination: "malete, kwara state",
@@ -34,10 +38,12 @@ module.exports = {
         deliveredOn: "2018-11-18",
         parcelStatus: "TRANSMITTING",
         parcelWeight: "333",
-        placedBy: "20",
+        placedBy: "1",
         parcelWeightScale: "kg",
         sentOn: "2018-11-18",
-        presentLocation: "isale oja, mowe, ajegunle"
+        presentLocation: "isale oja, mowe, ajegunle",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
