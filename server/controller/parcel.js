@@ -72,7 +72,7 @@ export default class ParcelController {
             id
         } = req.params
         try {
-            const foundParcel = await parcel.findOne({
+            const foundParcel = await parcel.findByPk({
                 where: {
                     id
                 }

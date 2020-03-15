@@ -1,4 +1,4 @@
-GET http://sendit11.herokuapp.com/api/v1/parcel/parcels
+GET http://sendit11.herokuapp.com/api/v1/parcel/parcels/2
 Content-Type: application/json
 
 {
