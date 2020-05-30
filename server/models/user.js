@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.TEXT,
     password: DataTypes.TEXT,
     isAdmin: DataTypes.BOOLEAN
-  }, {});
+  }, {
+    freezeTableName: true,
+    timestamps: false
+  });
   user.associate = function (models) {
     // associations can be defined here
     user.hasMany(models.parcel, {

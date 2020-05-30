@@ -36,6 +36,7 @@ export default class ParcelController {
             destination,
             pickupLocation,
             presentLocation,
+            parcelStatus,
             parcelWeight,
             placedBy,
             parcelWeightScale
@@ -47,6 +48,7 @@ export default class ParcelController {
                 destination,
                 pickupLocation,
                 presentLocation,
+                parcelStatus: 'TRANSITING',
                 parcelWeight,
                 placedBy,
                 sentOn: new Date(),

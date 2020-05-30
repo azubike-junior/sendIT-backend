@@ -22,7 +22,6 @@ export const getAccessFromFacebookApi = (access, Token, profile, done) => {
                     email: profile.emails[0].value,
                     password: "",
                     isAdmin: false
-
                 })
                 console.log('newUser:', newUser)
                 return done(null, passportResponse(newUser))

@@ -16,9 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     placedBy: DataTypes.TEXT,
     sentOn: DataTypes.DATE,
     parcelWeightScale: DataTypes.TEXT
-  }, {});
+  }, {
+    freezeTableName: true,
+    timestamps: false
+  });
   parcel.associate = function (models) {
-    // associations can be defined here
     parcel.belongsTo(models.user, {
       foreignKey: 'id',
       target: 'id',
