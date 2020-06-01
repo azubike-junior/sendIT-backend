@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('parcels', {
-      id: {
+      parcelId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -21,7 +21,8 @@ module.exports = {
         type: Sequelize.DATE
       },
       parcelStatus: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        defaultValue: 'TRANSITING'
       },
       presentLocation: {
         type: Sequelize.TEXT
@@ -29,27 +30,18 @@ module.exports = {
       parcelWeight: {
         type: Sequelize.INTEGER
       },
-      placedBy: {
+      placeBy: {
         type: Sequelize.TEXT
       },
       sentOn: {
         type: Sequelize.DATE
       },
-      parcelWeightScale: {
-        type: Sequelize.TEXT
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
+      parcelWeight: {
+        type: Sequelize.STRING
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return Promise.all([
-      queryInterface.dropTable('parcels')
-    ]);
-
+    return queryInterface.dropTable('parcels');
   }
 };

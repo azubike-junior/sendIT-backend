@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const parcel = sequelize.define('parcel', {
     parcelName: DataTypes.TEXT,
@@ -12,12 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     sentOn: DataTypes.DATE,
     parcelWeight: DataTypes.STRING
   }, {});
-  parcel.associate = function(models) {
+
+  parcel.associate = function (models) {
     parcel.hasOne(models.users, {
       foreignKey: 'parcelId',
       target: 'parcelId',
       onDelete: "CASCADE"
-    })
+    });
   };
+
   return parcel;
 };

@@ -8,7 +8,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYmM3ZDY3ODIt
     "password": "gggguuuu"
 }
 
-"parcelName": "chickens",
+        "parcelName": "chickens",
         "destination": "lagos state, ikorodu, no 5 loau street",
         "pickupLocation": "ikorodu turning",
         "deliveredOn": "2018-11-18",

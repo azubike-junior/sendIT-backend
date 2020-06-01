@@ -7,10 +7,11 @@ const {
     parcel
 } = models;
 
+// console.log("parcel0", models)
 export default class ParcelController {
     static async getParcels(req, res, next) {
-        try {
-            const foundParcels = await parcel.findAll();
+            const foundParcels = await models.parcel.findAll();
+            console.log(foundParcels)
             if (!foundParcels) {
                 return sendResponse(res, {
                     statusCode: 404,
@@ -26,9 +27,8 @@ export default class ParcelController {
                 data: foundParcels
             });
         } catch (e) {
-            throw e
+            return sendResponse(res, {statusCode: 500, success: false, message: e.message})
         }
-    }
 
     static async createParcel(req, res) {
         const {
@@ -41,7 +41,7 @@ export default class ParcelController {
             placedBy,
             parcelWeightScale
         } = req.body
-
+        
         try {
             let createdParcel = await parcel.create({
                 parcelName,
@@ -54,7 +54,7 @@ export default class ParcelController {
                 sentOn: new Date(),
                 parcelWeightScale
             })
-
+            console.log(createdParcel)
             if (createdParcel) {
                 return sendResponse(res, {
                     statusCode: 200,
@@ -68,19 +68,16 @@ export default class ParcelController {
         }
     }
 
-
     static async getParcel(req, res, next) {
         const {
-            id
+            parcelId
         } = req.params
-        console.log(id)
         try {
             const foundParcel = await parcel.findOne({
                 where: {
-                    id
+                    parcelId
                 }
             })
-            console.log(foundParcel)
             if (foundParcel) {
                 return sendResponse(res, {
                     statusCode: 200,

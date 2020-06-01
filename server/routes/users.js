@@ -8,9 +8,6 @@ import {
     validateSignup,
     validateSignin
 } from '../helpers/validate'
-router.get('/', (req, res) => {
-    res.send('it is working from user')
-});
 
 router.post('/signup', validateSignup, userController.signupUser)
 

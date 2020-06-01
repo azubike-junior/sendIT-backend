@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('users', {
     firstName: DataTypes.TEXT,
@@ -10,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false
   });
+
   user.associate = function (models) {
     // associations can be defined here
     user.hasMany(models.parcel, {
       foreignKey: 'parcelId',
       target: 'parcelId',
       onDelete: "CASCADE"
-    })
+    });
   };
+
   return user;
 };
