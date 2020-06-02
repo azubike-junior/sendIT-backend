@@ -6,7 +6,7 @@ import {
 import {
     verifyToken
 } from '../middlewares/verifyToken'
-import parcelController from '../controller/parcel'
+import parcelController from '../controller/parcelController'
 
 router.get('/parcels', parcelController.getParcels);
 

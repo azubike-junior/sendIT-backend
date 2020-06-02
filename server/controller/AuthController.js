@@ -41,7 +41,7 @@ export class userController {
                 lastName,
                 email,
                 password: hashPassword(req.body.password),
-                isAdmin
+                isAdmin: false
             })
             const {
                 password,
@@ -126,5 +126,50 @@ export class userController {
         return sendResponse(res, {
             message: 'google login passed'
         });
+    }
+
+    static async signUpUserByAdmin(req, res, next) {
+        const {
+            firstName,
+            lastName,
+            email,
+            isAdmin
+        } = req.body
+        try {
+            const foundUser = await users.findAll({
+                where: {
+                    email
+                }
+            })
+            if (foundUser.length > 0) {
+                return sendResponse(res, {
+                    statusCode: 400,
+                    success: false,
+                    message: 'Email has been used',
+                    data: null
+                })
+            }
+            const newUSer = await users.create({
+                firstName,
+                lastName,
+                email,
+                password: hashPassword(req.body.password),
+                isAdmin
+            })
+            const {
+                password,
+                ...user
+            } = newUSer.dataValues;
+
+            const token = generateToken(user);
+            return sendResponse(res, {
+                statusCode: 200,
+                success: true,
+                message: 'user registered successfully',
+                data: token
+            })
+        } catch (e) {
+            throw e;
+        }
     }
 }

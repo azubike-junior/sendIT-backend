@@ -36,7 +36,6 @@ export default class ParcelController {
             destination,
             pickupLocation,
             presentLocation,
-            parcelStatus,
             parcelWeight,
             placedBy,
             parcelWeightScale
@@ -48,7 +47,7 @@ export default class ParcelController {
                 destination,
                 pickupLocation,
                 presentLocation,
-                parcelStatus: 'TRANSITING',
+                parcelStatus: 'PLACED',
                 parcelWeight,
                 placedBy,
                 sentOn: new Date(),
@@ -144,14 +143,14 @@ export default class ParcelController {
             parcelStatus
         } = req.body
         try {
-            const foundParcel = await parcel.findAll({
+            const foundParcel = await parcel.findOne({
                 where: {
                     parcelId
                 }
             })
             if (foundParcel.length > 0) {
                 foundParcel.forEach(async parcel => {
-                    if (parcel.dataValues.parcelStatus === 'CANCELLED') {
+                    if (parcel.dataValues.parcelStatus === 'CANCELLED' || parcel.dataValues.parcelStatus === 'DELIVERED') {
                         return sendResponse(res, {
                             statusCode: 404,
                             success: false,

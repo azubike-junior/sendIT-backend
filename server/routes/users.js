@@ -3,7 +3,7 @@ const router = express.Router()
 import passport from 'passport'
 import {
     userController
-} from '../controller/User'
+} from '../controller/AuthController'
 import {
     validateSignup,
     validateSignin
