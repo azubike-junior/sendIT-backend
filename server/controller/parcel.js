@@ -5,11 +5,23 @@ import {
 const {
   parcel
 } = models;
+import ParcelServices from '../services/parcelServices'
+import {getPage, paginate, paginatePage} from '../helpers/pagination'
 
 export default class ParcelController {
   static async getParcels(req, res, next) {
     try {
-      const foundParcels = await parcel.findAll();
+      // const foundParcels = await parcel.findAll();
+      const {
+        page,
+        limit
+      } = getPage(req.query)
+      const foundParcels = await ParcelServices.getParcels(
+        paginate({numberOfPage, pageLimit}))
+      const result = {
+        count: foundParcels.count(),
+        foundParcels
+      }
       if (!foundParcels) {
         return sendResponse(res, {
           statusCode: 404,
@@ -22,7 +34,7 @@ export default class ParcelController {
         statusCode: 200,
         success: true,
         message: "all parcels retrieved",
-        data: foundParcels,
+        data: result
       });
     } catch (e) {
       return sendResponse(res, {
@@ -35,12 +47,19 @@ export default class ParcelController {
 
   static async getUserParcel(req, res) {
     try {
-      const { user: { userId} } = req;
-      const userParcels = await parcel.findAll({
-        where: {
-          placeBy: userId.toString()
-        }
-      })
+      const { user: { userId } } = req;
+      const { numberOfPage, pageLimit } = getPage(req.query)
+      const userParcels = await ParcelServices.getUserParcels(userId, paginate({numberOfPage, pageLimit}))
+      // const userParcels = await parcel.findAll({
+      //   where: {
+      //     placeBy: userId.toString()
+      //   },
+      //   paginate({page, limit})
+      // })
+      const results = {
+        allParcels: userParcels.length,
+        userParcels
+      }
       if (!userParcels.length) {
         return sendResponse(res, {
           statusCode: 404,
@@ -52,7 +71,7 @@ export default class ParcelController {
         statusCode: 200,
         success: true,
         message:'parcels retrieved by User',
-        data: userParcels
+        data: results
       })
     } catch (e){
       return sendResponse(res, {
@@ -62,7 +81,6 @@ export default class ParcelController {
       });
     }
   }
-
 
   static async createParcel(req, res) {
     try {
