@@ -1,71 +1,5 @@
 import { check, validationResult } from "express-validator";
-
-export const validateSignup = [
-  check("firstName")
-    .isLength({
-      min: 1,
-    })
-    .trim()
-    .escape()
-    .withMessage("First Name field is required"),
-  check("lastName")
-    .isLength({
-      min: 1,
-    })
-    .trim()
-    .escape()
-    .withMessage("Last Name field is required"),
-  check("email")
-    .isEmail()
-    .isLength({
-      min: 1,
-    })
-    .trim()
-    .escape()
-    .withMessage("Email field is required"),
-  check("password")
-    .isLength({
-      min: 8,
-    })
-    .trim()
-    .withMessage("Password must be more than 8 characters"),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        message: errors.array(),
-      });
-    }
-    return next();
-  },
-];
-
-export const validateSignin = [
-  check("email")
-    .isEmail()
-    .isLength({
-      min: 1,
-    })
-    .trim()
-    .escape()
-    .withMessage("Email field is required"),
-  check("password")
-    .isLength({
-      min: 8,
-    })
-    .trim()
-    .withMessage("Password must be more than 8 characters"),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        message: errors.array(),
-      });
-    }
-    return next();
-  },
-];
-
+import Joi from 'joi';
 
 export const validateParcel = [
   check("parcelName")
@@ -112,6 +46,22 @@ export const validateParcel = [
   },
 ];
 
-export const updateImageValidation = () => {
-
-}
+export const passwordResetValidation = [
+  check("password")
+    .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{6,}$/)
+    .isLength({
+      min: 2,
+    })
+    .trim()
+    .escape()
+    .withMessage("Password must be atleast 6 chars with atleast 1 uppercase, 1 number, & 1 special char"),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        message: errors.array(),
+      });
+    }
+    return next();
+  },
+]

@@ -25,6 +25,9 @@ module.exports = {
       },
       isAdmin: {
         type: Sequelize.BOOLEAN
+      },
+      resetToken: {
+        type:Sequelize.STRING
       }
     });
   },

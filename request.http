@@ -1,6 +1,6 @@
-POST http://localhost:4040/api/v1/customer/
+POST http://localhost:3040/api/v1/user/signup
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYmM3ZDY3ODItN2M2YS00YTk1LWEwMTMtYjAwMGZjM2Y4NzQyIiwiaWF0IjoxNTg1NDk0NjcxfQ.B46tD57MUmGERquOiK2HOcvWNZFxuX4sKKFHTe-euYo
+Authorization: 
 {
     "firstName": "alade",
     "lastName": "musa",

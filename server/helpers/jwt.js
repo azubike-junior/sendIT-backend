@@ -3,11 +3,15 @@ import dotenv from "dotenv";
 dotenv.config();
 const { DEV_DATABASE_SECRET } = process.env;
 
-export const generateToken = (user) => {
+export const generateToken = (userId) => {
   return jwt.sign(
     {
-      sub: user,
+      userId
     },
     DEV_DATABASE_SECRET
   );
 };
+
+export const decodedJwt = (token) => {
+  return jwt.verify(token, DEV_DATABASE_SECRET);
+}

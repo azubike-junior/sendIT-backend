@@ -1,11 +1,13 @@
 const dotenv = require('dotenv').config()
 
+const {DEV_DATABASE_URL, EXPIRY_TIME, DATABASE_URL, isProd} = process.env
+
 module.exports = {
   development: {
-    url: process.env.DEV_DATABASE_URL
+    url: DEV_DATABASE_URL
   },
   production: {
-    url: process.env.DATABASE_URL,
+    url: DATABASE_URL,
     dialect: 'postgres',
     dialectOptions: {
       ssl: true,
@@ -13,3 +15,6 @@ module.exports = {
     }
   }
 }
+
+module.exports.ISPROD = isProd
+module.exports.expiryTime = EXPIRY_TIME

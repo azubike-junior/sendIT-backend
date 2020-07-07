@@ -9,15 +9,14 @@ export const verifyToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const userToken = token
-    if (!userToken || typeof userToken === "undefined") {
+    if (!userToken || typeof userToken === undefined) {
       return sendResponse(res, {
         statusCode: 401,
-        success: false,
         message: "No valid token provided"
       });
     }
     const decodedToken = jwt.verify(userToken, DEV_DATABASE_SECRET);
-    req.user = decodedToken.sub;
+    req.user = decodedToken
     return next();
   } catch (e) {
     return sendResponse(res, {

@@ -1,55 +1,63 @@
-import express from "express";
-const router = express.Router();
+import {
+  Router
+} from "express";
+const userRouter = Router();
 import passport from "passport";
 import {
   UserController
 } from "../controller/User";
-import isAdmin, {
+import {
   verifyToken
 } from "../middlewares/verifyToken";
 import {
-  validateSignup,
-  validateSignin
-} from "../helpers/validate";
+  validateInput
+} from '../middlewares/validateInput'
+import {
+  passwordResetValidation
+} from '../helpers/validate'
 
-router.post("/signup", validateSignup, UserController.signupUser);
+userRouter.post("/signup", validateInput, UserController.signupUser);
 
-router.post("/signin", validateSignin, UserController.signinUser);
+userRouter.post("/signin", validateInput, UserController.signinUser);
 
-router.get('/users', isAdmin, verifyToken, UserController.getUsers)
+userRouter.get('/verification/:token', UserController.verifyUserAccount)
 
-router.get('/user', verifyToken, UserController.getOneUser)
+userRouter.post('/resetPassword', UserController.passwordResetRequest)
 
-router.put('/user', verifyToken, UserController.updateProfileImage)
+userRouter.put('/resetPassword/:token', passwordResetValidation, UserController.resetPassword)
 
-router.post('/signup/admin', validateSignup, UserController.signupAdmin)
+userRouter.get('/', verifyToken, UserController.getOneUser)
 
-router.get(
+userRouter.put('/', verifyToken, UserController.updateProfileImage)
+
+userRouter.post('/signup/admin', validateInput, UserController.signupAdmin)
+
+userRouter.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"]
   })
 );
 
-router.get(
-  "/auth/google/callback",
+userRouter.get(
+  "/google/redirect",
   passport.authenticate("google", {
     session: false,
-  })
+  }), UserController.socialAuth
 );
 
-router.get(
+userRouter.get(
   "/facebook",
   passport.authenticate("facebook", {
     scope: ["profile", "email"],
   })
 );
 
-router.get(
-  "/auth/facebook/callback",
+userRouter.get(
+  "/facebook/redirect",
   passport.authenticate("facebook", {
     session: false,
-  })
+  }), UserController.socialAuth
 );
 
-export default router;
+export default userRouter;

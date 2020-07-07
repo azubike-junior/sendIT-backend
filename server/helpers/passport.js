@@ -57,7 +57,7 @@ export const getAccessFromGoogleApi = (access, Token, profile, done) => {
             }
             return done(null, passportResponse(foundUser))
         } catch (e) {
-            throw e
+            console.log(e)
         }
     })
 }
