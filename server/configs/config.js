@@ -1,6 +1,11 @@
 const dotenv = require('dotenv').config()
 
-const {DEV_DATABASE_URL, EXPIRY_TIME, DATABASE_URL, isProd} = process.env
+const {
+  DEV_DATABASE_URL,
+  EXPIRY_TIME,
+  DATABASE_URL,
+  isProd
+} = process.env
 
 module.exports = {
   development: {

@@ -65,7 +65,8 @@ export class UserController {
         statusCode: 201,
         success: true,
         message: sanitize(message, false).replace("\n", ""),
-        user
+        user,
+        data: token
       });
     } catch (e) {
       return serverError(res, e)
