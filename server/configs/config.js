@@ -22,7 +22,7 @@ module.exports = {
   }
 }
 
-module.exports.hostUrl = 'http://localhost:3000/'
+module.exports.hostUrl = 'http://localhost:3000'
 
 module.exports.ISPROD = isProd
 module.exports.expiryTime = EXPIRY_TIME
