@@ -16,9 +16,7 @@ import {
   getBaseUrl,
   sanitize
 } from "../helpers/user";
-import {
-  send
-} from "@sendgrid/mail";
+import {hostUrl} from '../configs/config'
 const {
   users
 } = models;
@@ -58,13 +56,15 @@ export class UserController {
         ...user
       } = newUSer.dataValues;
       const token = generateToken(user.userId);
-      await newUSer.sendVerificationEmail(`${getBaseUrl(req)}/user/verification/${token}`)
+      const url = `${hostUrl}/user/verification/${token}`
+      console.log('======', url)
+      await newUSer.sendVerificationEmail(url)
       const message = `Sign up was successful. Please check your email to activate your account!
             If you don't find it in your inbox, please check your spam messages.`;
       return sendResponse(res, {
         statusCode: 201,
         success: true,
-        message: sanitize(message, false).replace("\n", ""),
+        message,
         user,
         data: token
       });

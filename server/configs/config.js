@@ -4,7 +4,8 @@ const {
   DEV_DATABASE_URL,
   EXPIRY_TIME,
   DATABASE_URL,
-  isProd
+  isProd,
+  NODE_ENV
 } = process.env
 
 module.exports = {
@@ -20,6 +21,8 @@ module.exports = {
     }
   }
 }
+
+module.exports.hostUrl = 'http://localhost:3000/'
 
 module.exports.ISPROD = isProd
 module.exports.expiryTime = EXPIRY_TIME
