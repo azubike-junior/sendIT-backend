@@ -16,7 +16,7 @@ import {
   getBaseUrl,
   sanitize
 } from "../helpers/user";
-import { hostUrl } from "../configs/config";
+import hostUrl  from "../configs/config";
 
 const {
   users

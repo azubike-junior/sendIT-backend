@@ -6,7 +6,8 @@ const {
   DATABASE_URL,
   isProd,
   NODE_ENV,
-  hostUrl
+  emailBaseUrl,
+  local
 } = process.env
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
   }
 }
 
-module.exports.hostUrl = hostUrl
+module.exports.hostUrl = NODE_ENV === production ? emailBaseUrl : local
 
 module.exports.ISPROD = isProd
 module.exports.expiryTime = EXPIRY_TIME
