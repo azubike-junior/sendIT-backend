@@ -16,7 +16,8 @@ import {
   getBaseUrl,
   sanitize
 } from "../helpers/user";
-import {hostUrl} from '../configs/config'
+import { hostUrl } from "../configs/config";
+
 const {
   users
 } = models;
@@ -56,7 +57,7 @@ export class UserController {
         ...user
       } = newUSer.dataValues;
       const token = generateToken(user.userId);
-      const url = `localhost:3000/user/verification/${token}`
+      const url = `${hostUrl}/user/verification/${token}`
       console.log('======', url)
       await newUSer.sendVerificationEmail(url)
       const message = `Sign up was successful. Please check your email to activate your account!
