@@ -57,7 +57,7 @@ export class UserController {
         ...user
       } = newUSer.dataValues;
       const token = generateToken(user.userId);
-      const url = `${hostUrl}/user/verification/${token}`
+      const url = `${hostUrl}/user/verify/${token}`
       console.log('======', url)
       await newUSer.sendVerificationEmail(url)
       const message = `Sign up was successful. Please check your email to activate your account!

@@ -20,7 +20,7 @@ userRouter.post("/signup", validateInput, UserController.signupUser);
 
 userRouter.post("/signin", validateInput, UserController.signinUser);
 
-userRouter.get('/verification/:token', UserController.verifyUserAccount)
+userRouter.get('/verify/:token', UserController.verifyUserAccount)
 
 userRouter.post('/resetPassword', UserController.passwordResetRequest)
 
