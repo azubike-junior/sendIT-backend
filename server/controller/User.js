@@ -14,9 +14,10 @@ import {
 } from "../helpers/password";
 import {
   getBaseUrl,
-  sanitize
+  sanitize,
+  hostUrl
 } from "../helpers/user";
-import hostUrl  from "../configs/config";
+// import {hostUrl}  from "../configs/config";
 
 const {
   users

@@ -24,7 +24,8 @@ module.exports = {
   }
 }
 
-module.exports.hostUrl = NODE_ENV === production ? emailBaseUrl : local
+// export const hostUrl = isProd === 'production' ? 'https://seansendit.netlify.app' : 'http://localhost:3000'
 
-module.exports.ISPROD = isProd
-module.exports.expiryTime = EXPIRY_TIME
+export const ISPROD = isProd;
+
+export const expiryTime = EXPIRY_TIME
