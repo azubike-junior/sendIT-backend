@@ -214,7 +214,7 @@ export class UserController {
         }
         return sendResponse(res, {
           message: 'Account verification was successful',
-          user: userResponse(await user.activateAccount())
+          data: userResponse(await user.activateAccount())
         })
       }
       return sendResponse(res, {
