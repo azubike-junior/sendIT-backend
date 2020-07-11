@@ -138,7 +138,6 @@ export class UserController {
           resetToken: token
         }
       });
-      console.log('====foundUser', foundUser)
       if (foundUser) {
         console.log('======= it got here')
         await foundUser.resetPassword(password, token);

@@ -20,13 +20,8 @@ export const sendResponse = (res, options) => {
 }
 
 export const userResponse = (datavalues) => {
-    const {
-        userId,
-        email
-    } = datavalues
+    console.log('========datavalues', datavalues)
     return {
-        userId,
-        email,
         token: generateToken(datavalues.userId)
     }
 }
