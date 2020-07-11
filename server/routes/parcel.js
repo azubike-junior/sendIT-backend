@@ -11,7 +11,7 @@ import parcelController from "../controller/parcel";
 
 router.get("/", parcelController.getParcels);
 
-router.get('/userParcels', isNotAdmin, verifyToken, parcelController.getUserParcel)
+router.get('/userParcels', verifyToken, parcelController.getUserParcel)
 
 router.get("/:parcelId", parcelController.getParcel);
 
