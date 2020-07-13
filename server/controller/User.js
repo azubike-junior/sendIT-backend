@@ -2,6 +2,7 @@ import {
   generateToken,
   decodedJwt
 } from "../helpers/jwt";
+import crypto from 'crypto';
 import {
   sendResponse,
   serverError,
@@ -61,8 +62,7 @@ export class UserController {
       const url = `${hostUrl}/user/verify/${token}`
       console.log('======', url)
       await newUSer.sendVerificationEmail(url)
-      const message = `Sign up was successful. Please check your email to activate your account!
-            If you don't find it in your inbox, please check your spam messages.`;
+      const message = `Sign up was successful. Please check your email to activate your account! If you don't find it in your inbox, please check your spam messages.`;
       return sendResponse(res, {
         statusCode: 201,
         success: true,
@@ -106,7 +106,7 @@ export class UserController {
         return sendResponse(res, {
           statusCode: 400,
           success: false,
-          message: "user is not verified"
+          message: "this account has not been verified"
         });
       }
       return sendResponse(res, {
@@ -131,7 +131,6 @@ export class UserController {
         token
       }
     } = req;
-    console.log(token)
     try {
       const foundUser = await users.findOne({
         where: {
@@ -163,32 +162,42 @@ export class UserController {
       email
     } = req.body
     try {
-      const verifiedUser = await users.findOne({
+      const buffer = crypto.randomBytes(32);
+      const token = buffer.toString('hex')
+      const user = await users.findOne({
+        where :{
+          email
+        }
+      })
+      const verifiedUser = await users.update(
+        {
+          resetToken: token
+        },
+        {
         where: {
           email,
           isVerified: true
         }
       })
-      console.log(verifiedUser)
       if (verifiedUser) {
-        const url = `${getBaseUrl(req)}/user/resetPassword`;
+        const url = `${hostUrl}/user/resetPassword`;
         console.log(url)
-        await verifiedUser.sendPasswordResetEmail(url)
+        await user.sendPasswordResetEmail(url)
+        console.log('=======token', verifiedUser, token)
         return sendResponse(res, {
           success: true,
           statusCode: 200,
           message: `Password Reset Email has been Sent Successfully to your email, `.concat(
             "check your Spam in case you did not find it in your inbox"
           ),
-          data: await verifiedUser.generateResetToken()
+          data: token
         });
       }
       return sendResponse(res, {
-        success: false,
-        statusCode: 404,
-        message: "Invalid Email or You are not verified"
+          statusCode: 400,
+          success: false,
+          message: "invalid Email address or your account has not been verified"
       });
-
     } catch (e) {
       console.log(e)
       return serverError(res, e)
@@ -359,7 +368,7 @@ export class UserController {
     }
   }
 
-  static socialAuth (req, res){
+  static socialAuth(req, res) {
     return sendResponse(res, {
       statusCode: 200,
       data: req.user

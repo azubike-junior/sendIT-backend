@@ -2,6 +2,7 @@ import {
   sendEmail
 } from '../email/email'
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto'
 import {
   expiryTime
 } from '../configs/config';
@@ -67,12 +68,14 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
     });
   }
-  user.prototype.generateResetToken = async function () {
-    this.resetToken = encryptToken();
-    this.save();
-    await this.reload();
-    return this.resetToken;
-  }
+  // user.prototype.generateResetToken = async function () {
+  //   const token = crypto.randomBytes(32);
+  //   this.resetToken = token.toString("hex")
+  //   console.log('======this', this.resetToken)
+  //   this.save();
+  //   await this.reload();
+  //   return this.resetToken;
+  // }
   user.prototype.sendVerificationEmail = async function (url) {
     const {
       firstName,
@@ -87,7 +90,8 @@ module.exports = (sequelize, DataTypes) => {
       lastName,
       email
     } = this;
-    const resetToken = await this.generateResetToken();
+     const token = crypto.randomBytes(32);
+     const resetToken = token.toString("hex")
     const resetUrl = `${url}/${resetToken}`;
     await sendEmail(firstName, lastName, email, 'RESET EMAIL', resetUrl, resetConstants)
   }
