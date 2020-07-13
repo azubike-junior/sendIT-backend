@@ -181,7 +181,7 @@ export class UserController {
          }
        })
       if (verifiedUser) {
-        const url = `${hostUrl}/reset_password`;
+        const url = `${hostUrl}/user/reset_password`;
         console.log(url)
         await verifiedUser.sendPasswordResetEmail(url)
         console.log('=======token', verifiedUser, token)
