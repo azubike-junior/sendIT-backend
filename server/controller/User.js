@@ -164,12 +164,7 @@ export class UserController {
     try {
       const buffer = crypto.randomBytes(32);
       const token = buffer.toString('hex')
-      const user = await users.findOne({
-        where :{
-          email
-        }
-      })
-      const verifiedUser = await users.update(
+      await users.update(
         {
           resetToken: token
         },
@@ -179,10 +174,16 @@ export class UserController {
           isVerified: true
         }
       })
+       const verifiedUser = await users.findOne({
+         where: {
+           email,
+           isVerified:true
+         }
+       })
       if (verifiedUser) {
         const url = `${hostUrl}/user/resetPassword`;
         console.log(url)
-        await user.sendPasswordResetEmail(url)
+        await verifiedUser.sendPasswordResetEmail(url)
         console.log('=======token', verifiedUser, token)
         return sendResponse(res, {
           success: true,
