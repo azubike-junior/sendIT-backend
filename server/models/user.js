@@ -84,15 +84,13 @@ module.exports = (sequelize, DataTypes) => {
     } = this;
     await sendEmail(firstName, lastName, email, 'EMAIL VERIFICATION', url, verifyConstants)
   }
-  user.prototype.sendPasswordResetEmail = async function (url) {
+  user.prototype.sendPasswordResetEmail = async function (url, token) {
     const {
       firstName,
       lastName,
       email
     } = this;
-     const token = crypto.randomBytes(32);
-     const resetToken = token.toString("hex")
-    const resetUrl = `${url}/${resetToken}`;
+    const resetUrl = `${url}/${token}`;
     await sendEmail(firstName, lastName, email, 'RESET EMAIL', resetUrl, resetConstants)
   }
   user.prototype.resetPassword = async function (password, token) {

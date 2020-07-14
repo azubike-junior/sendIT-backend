@@ -138,7 +138,6 @@ export class UserController {
         }
       });
       if (foundUser) {
-        console.log('======= it got here')
         await foundUser.resetPassword(password, token);
         return sendResponse(res, {
           statusCode: 200,
@@ -183,7 +182,7 @@ export class UserController {
       if (verifiedUser) {
         const url = `${hostUrl}/user/reset_password`;
         console.log(url)
-        await verifiedUser.sendPasswordResetEmail(url)
+        await verifiedUser.sendPasswordResetEmail(url, token)
         console.log('=======token', verifiedUser, token)
         return sendResponse(res, {
           success: true,
