@@ -142,7 +142,7 @@ export class UserController {
         return sendResponse(res, {
           statusCode: 200,
           success: true,
-          message: "Password changed Successfully",
+          message: "Your password has been changed successfully, you can now sign in",
           data: userResponse(foundUser)
         });
       }
