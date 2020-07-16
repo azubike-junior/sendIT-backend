@@ -67,6 +67,7 @@ export default class ParcelController {
         data: userParcels
       })
     } catch (e){
+      console.log(e)
       return sendResponse(res, {
         statusCode: 500,
         success: false,
