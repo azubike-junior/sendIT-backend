@@ -18,7 +18,6 @@ import {
   sanitize,
   hostUrl
 } from "../helpers/user";
-// import {hostUrl}  from "../configs/config";
 
 const {
   users
@@ -214,6 +213,7 @@ export class UserController {
       const decoded = decodedJwt(token);
       let user = await users.findByPk(decoded.userId);
       if (user) {
+        console.log(user);
         if (user.get('isVerified') === true) {
           return sendResponse(res, {
             statusCode: 200,

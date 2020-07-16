@@ -48,18 +48,11 @@ export default class ParcelController {
   static async getUserParcel(req, res) {
     try {
       const { user: { userId } } = req;
-      const { numberOfPage, pageLimit } = getPage(req.query)
-      const userParcels = await ParcelServices.getUserParcels(userId, paginate({numberOfPage, pageLimit}))
-      // const userParcels = await parcel.findAll({
-      //   where: {
-      //     placeBy: userId.toString()
-      //   },
-      //   paginate({page, limit})
-      // })
-      const results = {
-        allParcels: userParcels.length,
-        userParcels
-      }
+      const userParcels = await parcel.findAll({
+        where: {
+          placeBy: userId.toString()
+        },
+      })
       if (!userParcels.length) {
         return sendResponse(res, {
           statusCode: 404,
@@ -71,7 +64,7 @@ export default class ParcelController {
         statusCode: 200,
         success: true,
         message:'parcels retrieved by User',
-        data: results
+        data: userParcels
       })
     } catch (e){
       return sendResponse(res, {
